@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>vue-example</title>
+</head>
+<body>
+<div id="test">
+  <input type="text" v-model="msg"><br/>
+  <p>hello: {{msg}}</p>
+  <p v-text="msg"></p>
+  <img v-bind:src="imgUrl"><br>
+  <img :src="imgUrl">
+  <button v-on:click="test">test1</button>
+  <button @click="test2(msg)">test2</button>
+</div>
+
+<script type="application/javascript" src="vue.js"></script>
+<script type="application/javascript">
+  const vm = new Vue({
+    el: '#test',
+    data:{
+      msg:'bi ch',
+      imgUrl:'https://doc.vue-js.com/images/logo.png'
+    },
+    methods:{
+      test () {
+        alert('he he message')
+      },
+      test2 (content) {
+        alert(content)
+      }
+    }
+  })
+  vm.msg='设置值'
+</script>
+<!-- built files will be auto injected -->
+</body>
+</html>

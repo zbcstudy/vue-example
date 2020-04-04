@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>08_条件渲染</title>
+</head>
+<body>
+<!--
+1. 条件渲染指令
+  v-if
+  v-else
+  v-show
+2. 比较v-if与v-show
+  如果需要频繁切换 v-show 较好
+-->
+
+<div id="demo">
+  <h1>遍历数组</h1>
+    <input type="text" v-model="searchName">
+    <ul>
+      <li v-for="(p, index) in filterPersons" :key=index>
+        {{index}}---{{p.name}}---{{p.age}}
+        ---<button @click="deleteP(index)">删除</button>
+        ---<button @click="updateP(index, {name: 'cat', age1: 44})">更新</button>
+      </li>
+    </ul>
+  <button>升序排序</button>
+  <button>降序排序</button>
+  <button>原本排序</button>
+  <h1></h1>遍历对象
+</div>
+
+<script type="text/javascript" src="vue.js"></script>
+<script type="text/javascript">
+  const vm = new Vue({
+    el: '#demo',
+    data: {
+      searchName: '',
+      persons: [
+        {name: 'tom', age: 18},
+        {name: 'jerry', age: 19},
+        {name: 'aaron', age: 20},
+        {name: 'rose', age: 21}
+      ]
+    },
+    methods: {
+      deleteP (index) {
+        //删除person中指定的index
+        this.persons.splice(index, 1)
+      },
+      updateP (index, newP) {
+        //vue会检测person对象本身的改变并不会直接监听数组某一行的变化
+        this.persons[index] = newP
+        this.persons.splice(index, 1, newP)
+      }
+    },
+    //计算属性
+    computed: {
+      filterPersons () {
+        const {searchName, persons} = this
+        let fPersons;
+        fPersons = persons.filter(p => p.name.indexOf(searchName) !== -1)
+        return fPersons
+      }
+    }
+  })
+</script>
+</body>
+</html>
