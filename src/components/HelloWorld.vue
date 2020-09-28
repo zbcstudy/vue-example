@@ -3,12 +3,16 @@
     <h1>{{ msg }}</h1>
     <p v-text="text"></p>
     <p v-html="text"></p>
-    {{status ? 'is true': 'is false'}}
+    三元表达式：{{status ? 'is true': 'is false'}}
+    <component-a></component-a>
   </div>
 </template>
 
 <script>
+import componentA from "./componentA"
+
 export default {
+  components: { componentA },
   name: 'HelloWorld',
   data () {
     return {
