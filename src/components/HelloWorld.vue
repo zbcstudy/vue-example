@@ -9,10 +9,10 @@
 </template>
 
 <script>
-import componentA from "./componentA"
+import componentA from './componentA'
 
 export default {
-  components: { componentA },
+  components: {componentA},
   name: 'HelloWorld',
   data () {
     return {

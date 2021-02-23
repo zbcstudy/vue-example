@@ -13,12 +13,15 @@ Vue.config.productionTip = false
 
 const myHeader = {
   template: '<p>this is my first header component</p>'
-};
+}
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  data:{
+    "ml":true,
+  },
   router,
-  components: { App, myHeader},
+  components: {App, myHeader},
   template: '<App/>'
 })
