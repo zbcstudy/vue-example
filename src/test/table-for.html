@@ -15,15 +15,23 @@
 -->
 
 <div id="demo">
-  <h1>遍历数组</h1>
-    <ul>
-      <li v-for="(p, index) in persons" :key=index>
-        {{index}}---{{p.name}}---{{p.age}}
-        ---<button @click="deleteP(index)">删除</button>
-        ---<button @click="updateP(index, {name: 'cat', age1: 44})">更新</button>
-      </li>
-    </ul>
-  <h1></h1>遍历对象
+
+  <h1>遍历对象数组</h1>
+  <ul>
+    <li v-for="(p, index) in persons" :key=index>
+      {{index}}---{{p.name}}---{{p.age}}
+      ---
+      <button @click="deleteP(index)">删除</button>
+      ---
+      <button @click="updateP(index, {name: 'cat', age1: 44})">更新</button>
+    </li>
+  </ul>
+  <h1>遍历普通数组</h1>
+  <p v-for="item in lists">{{item}}</p>
+  <h1>遍历对象</h1>
+  <p v-for="(val,key) in user">键是：{{key}},值为：{{val}}</p>
+  <h1>遍历数字</h1>
+  <p v-for="count in 10">这是第{{count}}次循环</p>
 </div>
 
 <script type="text/javascript" src="vue.js"></script>
@@ -36,14 +44,20 @@
         {name: 'jerry', age: 19},
         {name: 'aaron', age: 20},
         {name: 'rose', age: 21}
-      ]
+      ],
+      lists: [2, 3, 4, 5, 6, 7],
+      user: {
+        id: 1,
+        name: 'aaron',
+        address: '宇宙第一号'
+      }
     },
     methods: {
-      deleteP (index) {
+      deleteP(index) {
         //删除person中指定的index
         this.persons.splice(index, 1)
       },
-      updateP (index, newP) {
+      updateP(index, newP) {
         //vue会检测person对象本身的改变并不会直接监听数组某一行的变化
         this.persons[index] = newP
         this.persons.splice(index, 1, newP)

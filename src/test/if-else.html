@@ -7,9 +7,9 @@
 <body>
 <!--
 1. 条件渲染指令
-  v-if
+  v-if： 每次都会重新删除或创建元素
   v-else
-  v-show
+  v-show: 不会进行DOM的删除和切换操作,只是切换了元素的 display=none样式
 2. 比较v-if与v-show
   如果需要频繁切换 v-show 较好
 -->
@@ -21,6 +21,7 @@
   <p v-show="ok">表白成功</p>
   <p v-show="!ok">表白失败</p>
   <button @click="changOk">改变</button>
+  <button @click="ok=!ok">改变2</button>
 </div>
 
 <script type="text/javascript" src="vue.js"></script>
