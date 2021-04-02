@@ -11,7 +11,7 @@
 <div id="app">
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">添加品牌</h3>
+      <h3 class="panel-title" v-color="colorVal">添加品牌</h3>
     </div>
     <div class="panel-body form-inline">
       <label>
@@ -46,6 +46,7 @@
     </tr>
     </tbody>
   </table>
+  <div v-fontsize="20">sss</div>
 </div>
 <script>
   //全局过滤器
@@ -80,15 +81,14 @@
 
   });
 
+  //自定义一个设置颜色的指令
   Vue.directive('color', {
+    // 样式只要通过指令绑定给元素, 不管这个元素有没有插入到页面中,这个元素可定有一个内联样式
+    // 将来元素肯定会显示到页面中，这时候，浏览器的渲染引擎必然会解析样式，应用给这个元素
     bind: function (el, binding) {
+      console.log('name:' + binding.name + "->value:" + binding.value);
+      el.style.color = binding.value;
     },
-    inserted: function (el, binding) {
-
-    },
-    updated: function (el, binding) {
-
-    }
   });
 
   const vm = new Vue({
@@ -97,6 +97,7 @@
       id: '',
       name: '',
       keyword: '',
+      colorVal:'red',
       list: [
         {id: 1, name: '奔驰', ctime: new Date()},
         {id: 2, name: '宝马', ctime: new Date()}
@@ -146,6 +147,17 @@
         let month = (dt.getMonth() + 1).toString().padStart(2, '0');
         let day = dt.getDay();
         return `${fullYear}-${month}-${day}`;
+      }
+    },
+    directives: {
+      'fontweight': { // 设置字体粗细的
+        bind: function (el, binding) {
+          el.style.fontWeight = binding.value
+        }
+      },
+      'fontsize': function (el, binding) {
+        console.log(binding.value)
+        el.style.fontSize = parseInt(binding.value) + 'px';
       }
     }
   });

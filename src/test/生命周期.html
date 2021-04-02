@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>生命周期</title>
+  <script type="application/javascript" src="lib/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <div id="mId">{{msg}}</div>
+  <input type="button" @click="msg='no'" value="修改msg的值"></input>
+</div>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      msg: 'sss',
+    },
+    methods: {
+      show(){
+        console.log("ok")
+      }
+    },
+    //生命周期方法
+    beforeCreate() {
+      //vue初始化之前 无法获取到数据
+      // console.log(this.cat);
+      // this.show()
+    },
+    created() {
+      //vue初始化完成
+      console.log(this.msg);
+      this.show()
+    },
+    beforeMount: function () {
+      //模板已经编译完成 但是尚未把模板渲染到页面中
+      let value = document.getElementById("mId").innerText;
+      console.log(value); //此时获取到的值为 {{msg}} 页面还未进行渲染
+    },
+    mounted() {
+      //内存中的模板已经渲染到页面中, 用户应经可以看到渲染好的页面
+      // mounted是实例创建期间的最后一个生命周期函数 mounted执行完毕 实例初始化完成
+    },
+
+    //组件运行期间的周期函数, 最少触发0次
+    beforeUpdate() {
+      //组件数据发生改变时执行
+      //当执行beforeUpdate时 页面显示的数据 是旧的 但是data中的数据是新的 页面还未进行新值的渲染
+      console.log(document.getElementById("mId").innerText);
+      console.log(this.msg);
+    },
+    updated() {
+      //组件数据改变完成
+      //updated 页面显示的数据 是已经修改过的数据
+      console.log(document.getElementById("mId").innerText);
+      console.log(this.msg);
+    },
+    //组件销毁之前 func
+    beforeDestroy: function () {
+
+    },
+    destroyed() {
+
+    }
+
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>动画</title>
+  <script type="application/javascript" src="../lib/vue.js"></script>
+  <link rel="stylesheet" href="../lib/animate.css">
+  <style>
+    .fade-enter, .fade-leave-to {
+      opacity: 0;
+    }
+    .fade-enter-active, .fade-leave-active {
+      transition: opacity 1s ease;
+    }
+    .ball {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+<!--  <input type="button" @click="flag=!flag" value="显示动画效果"></input>-->
+<!--  <transition name="fade">-->
+<!--    <p v-if="flag">这是一个div标签</p>-->
+<!--  </transition>-->
+
+<!--  <div></div>-->
+  <input type="button" @click="show=!show" value="半程动画"></input>
+  <transition @before-enter="beforeEnter"
+              @enter="enter"
+              @after-enter="afterEnter">
+    <div class="ball" v-show="show"></div>
+  </transition>
+</div>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      flag: false,
+      show: false
+    },
+    // 动画钩子函数的第一个参数为 el,表示要执行动画得DOM元素 是个原生的js对象
+    methods: {
+      beforeEnter(el) {
+        // 开始动画之前的起始位置
+        el.style.transform = "translate(0, 0)";
+      },
+      enter(el, done) {
+        el.offsetWidth;
+        el.style.transform = "translate(150px, 450px)";
+        el.style.transition = "all 1s ease";
+        done();
+      },
+      afterEnter(el) {
+        console.log(this.show);
+        this.show = !this.show;
+      }
+    }
+  })
+</script>
+</body>
+</html>

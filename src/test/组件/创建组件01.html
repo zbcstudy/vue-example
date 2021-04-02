@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>创建组件</title>
+  <script type="application/javascript" src="../lib/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <my-comp></my-comp>
+  <se-comp></se-comp>
+  <thi-comp></thi-comp>
+  <for-comp></for-comp>
+</div>
+<template id="temp">
+  <h1>这是通过template元素，在外部定义的组件结构</h1>
+</template>
+<script>
+  // 1 使用extend创建组件
+  let comp = Vue.extend({
+    template: '<h3>这是使用vue.extend创建的组件</h3>'
+  });
+  // 组件名称 注意驼峰命名时 组件引用时使用 -
+  Vue.component('myComp', comp); //注册为全局组件
+
+  // 2 合并创建组件
+  Vue.component('seComp', Vue.extend({
+    template: '<h3>这是使用vue.extend创建的组件</h3>'
+  }));
+
+  //直接使用vue.component创建的组件 template必须有一个唯一的根组件
+  Vue.component("thiComp", {
+    template: '<h3>直接使用vue.component创建的组件</h3>',
+  });
+
+  // 3 通过template创建组件
+  Vue.component("forComp", {
+    template: '#temp',
+  });
+
+  let vm = new Vue({
+    el: '#app',
+    data: {
+
+    }
+  })
+</script>
+</body>
+</html>

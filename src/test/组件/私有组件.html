@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>私有组件</title>
+  <script type="application/javascript" src="../lib/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <login></login>
+  <temp-login></temp-login>
+</div>
+<template id="temp">
+  <h1>这是通过template创建的私有的login</h1>
+</template>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+
+    },
+    methods:{},
+    filters:{},
+    directives:{},
+    components:{
+      login:{
+        template:'<h1>这是私有的login</h1>'
+      },
+      tempLogin:{
+        template: '#temp'
+      }
+    },
+    beforeCreate(){},
+    created(){},
+    beforeMount() {
+
+    },
+    mounted(){},
+    beforeUpdate(){},
+    updated(){},
+    beforeDestroy(){},
+    destroyed(){},
+  })
+</script>
+</body>
+</html>
