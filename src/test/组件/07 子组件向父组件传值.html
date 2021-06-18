@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>组件方法调用</title>
+  <script type="application/javascript" src="../lib/vue.js"></script>
+</head>
+<body>
+<!--
+  子组件向父组件传值 本质上是子组件调用父组件的方法 通过方法进行data数据的修改
+-->
+<div id="app">
+  {{dataFromSonComp}}
+  <comp1 @func1="show"></comp1>
+</div>
+<template id="comp1">
+  <div>
+    <h1>组件的标题</h1>
+    <input type="button" value="子组件的按钮" @click="myClick"></input>
+  </div>
+</template>
+<script>
+  const comp1 = {
+    template: '#comp1',
+    data() {
+      return {
+        sonmsg: {name: '大头儿子', age: 6},
+      }
+    },
+    methods: {
+      myClick(){
+        console.log("子组件调用");
+        //将子组件的值传递給父组件
+        this.$emit('func1', this.sonmsg);
+      }
+    }
+  };
+  const vm = new Vue({
+    el: '#app',
+    data: {
+      dataFromSonComp: {}
+    },
+    methods: {
+      show(data){
+        console.log(data);
+        this.dataFromSonComp = data
+      }
+    },
+    components: {
+      comp1
+    }
+  })
+</script>
+</body>
+</html>

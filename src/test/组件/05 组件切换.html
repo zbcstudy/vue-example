@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>组件切换</title>
+  <script type="application/javascript" src="../lib/vue.js"></script>
+  <style>
+    .v-enter, v-leave-to {
+      opacity: 0;
+      transform: translateX(150px);
+    }
+
+    .v-enter-active, v-leave-active {
+      transition: all 1s ease;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <a href="#" @click.prevent="templateName='login'">登录</a>
+  <a href="#" @click="templateName='register'">注册</a>
+  <!--component是一个组件占位符 is是需要展示的组件的名称-->
+  <transition mode="out-in">
+    <component :is="templateName"></component>
+  </transition>
+</div>
+
+<template id="login">
+  <h1>登录组件</h1>
+</template>
+
+<template id="register">
+  <h1>注册组件</h1>
+</template>
+
+<script>
+  Vue.component('login', {
+    template: '#login'
+  });
+
+  Vue.component('register', {
+    template: '#register'
+  });
+
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      flag: true,
+      templateName:'login'
+    },
+    methods:{},
+    filters:{},
+    directives:{},
+    components:{
+      tempLogin:{
+        template:'<h1>这是私有的login</h1>'
+      }
+    },
+    beforeCreate(){},
+    created(){},
+    beforeMount() {
+
+    },
+    mounted(){},
+    beforeUpdate(){},
+    updated(){},
+    beforeDestroy(){},
+    destroyed(){},
+  })
+</script>
+</body>
+</html>
