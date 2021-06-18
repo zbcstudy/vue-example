@@ -14,15 +14,16 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "vue": "^2.6.11",
-    "vue-router": "^3.1.5",
     "element-ui": "^2.14.1",
     "file-saver": "^2.0.2",
     "iconv-lite": "^0.5.1",
     "jquery": "^3.4.1",
     "jszip": "^3.4.0",
+    "mint-ui": "^2.2.13",
     "moment": "^2.24.0",
+    "vue": "^2.6.11",
     "vue-json-excel": "^0.2.98",
+    "vue-router": "^3.1.5",
     "vue-sweetalert2": "^3.0.3",
     "vuex": "^3.1.2"
   },

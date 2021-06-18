@@ -13,7 +13,6 @@
 <!--    </el-container>-->
 <!--  </dev>-->
   <div id="app">
-    <my-header style="color: red"></my-header>
     <img src="./assets/logo.png">
     <router-view/>
   </div>
