@@ -11,6 +11,7 @@
   <p>hello: {{msg}}</p>
   <p v-text="msg"></p>
   <img v-bind:src="imgUrl"><br>
+  <a v-bind:href="url">点我跳转</a>
   <img :src="imgUrl">
   <button v-on:click="test">test1</button>
   <button @click="test2(msg)">test2</button>
@@ -18,11 +19,13 @@
 
 <script type="application/javascript" src="lib/vue.js"></script>
 <script type="application/javascript">
+  Vue.config.productionTip = false;
   const vm = new Vue({
     el: '#test',
     data:{
       msg:'bi ch',
-      imgUrl:'https://doc.vue-js.com/images/logo.png'
+      imgUrl:'https://doc.vue-js.com/images/logo.png',
+      url:'http://www.baidu.com'
     },
     methods:{
       test () {

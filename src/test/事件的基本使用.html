@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>demo</title>
+  <script type="application/javascript" src="lib/vue.js"></script>
+</head>
+<body>
+
+<div id="root">
+  <button v-on:click="showInfo1">点我提示信息</button>
+  <button @click="showInfo2(2)">点我提示信息2</button>
+</div>
+
+<script type="text/javascript">
+  Vue.config.productionTip = true;
+  const vm = new Vue({
+    el:'#root',
+    data:{
+
+    },
+    methods:{
+      showInfo1(event){
+        console.log(event);
+        console.log('66');
+      },
+      showInfo2(num) {
+        // console.log(event.target);
+        // console.log(event.target.innerText);
+        console.log(num);
+        console.log("99");
+      }
+
+    }
+
+  })
+</script>
+</body>
+</html>
