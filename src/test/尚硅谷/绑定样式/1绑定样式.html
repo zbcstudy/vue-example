@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>demo</title>
+  <script type="application/javascript" src="../../lib/vue.js"></script>
+  <style>
+    .basic {
+      background-color: black;
+      width: 100px;
+    }
+    .normal {
+      border: dashed;
+      background-color: blue;
+    }
+    .happy {
+      background-color: red;
+    }
+    .sad {
+      background-color: skyblue;
+    }
+  </style>
+</head>
+<body>
+<div id="root">
+  <div class="basic" :class="color" @click="changColor">{{name}}</div>
+</div>
+
+<script type="text/javascript">
+  Vue.config.productionTip = false;
+  const vm = new Vue({
+    el: '#root',
+    data: {
+      name: '赵必成',
+      color: 'normal'
+    },
+    methods: {
+      changColor() {
+        const arr = ['normal', 'happy', 'sad'];
+        let index = Math.floor(Math.random() * 3);
+        this.color = arr[index];
+      }
+    }
+  });
+</script>
+</body>
+</html>
